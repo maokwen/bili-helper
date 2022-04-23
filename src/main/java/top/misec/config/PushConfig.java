@@ -8,6 +8,7 @@ import org.apache.http.HttpHost;
 import lombok.Data;
 import lombok.Getter;
 import top.misec.push.Push;
+import top.misec.push.impl.BarkPush;
 import top.misec.push.impl.DingTalkPush;
 import top.misec.push.impl.DingTalkSecretPush;
 import top.misec.push.impl.PushPlusPush;
@@ -127,6 +128,12 @@ public class PushConfig {
      */
     private String WE_COM_APP_MEDIA_ID;
 
+    /**
+     * Bark .
+     */
+    private String BARK_KEY;
+
+
     public PushInfo getPushInfo() {
         if (StringUtils.isNoneBlank(TG_BOT_TOKEN, TG_USER_ID) && Boolean.TRUE.equals(TG_USE_CUSTOM_URL)) {
             return new PushInfo(new TelegramCustomUrlPush(), TG_BOT_TOKEN, TG_USER_ID);
@@ -146,6 +153,8 @@ public class PushConfig {
             return new PushInfo(new ServerChanPush(), SC_KEY);
         } else if (StringUtils.isNoneBlank(WE_COM_APP_CORP_SECRET, WE_COM_APP_CORPID) && null != WE_COM_APP_AGENT_ID) {
             return new PushInfo(new WeComAppPush(), WE_COM_APP_CORPID, null, WE_COM_APP_CORP_SECRET, WE_COM_APP_AGENT_ID, WE_COM_APP_TO_USER, WE_COM_APP_MEDIA_ID);
+        } else if (StringUtils.isNotBlank(BARK_KEY)) {
+            return new PushInfo(new BarkPush(), BARK_KEY);
         } else {
             return null;
         }

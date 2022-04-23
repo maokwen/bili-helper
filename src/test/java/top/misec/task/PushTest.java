@@ -17,6 +17,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PushTest {
 
     @Test
+    public void testBarkPush() {
+
+        PushMetaInfo pushMetaInfo = PushMetaInfo.builder()
+                .chatId("")
+                .token("")
+                .secret("")
+                .build();
+        PushResult pushResult = new BarkPush().doPush(pushMetaInfo, "testBarkPush");
+        assertTrue(pushResult.isSuccess());
+    }
+
+    @Test
     public void testServerChanTurboPush() {
 
         PushMetaInfo pushMetaInfo = PushMetaInfo.builder()
