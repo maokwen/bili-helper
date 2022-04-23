@@ -11,6 +11,7 @@ public class ApiList {
     /**
      * 直播签到.
      */
+    public static final String BARK_PUSH = "https://api.day.app/";
     public static final String LIVE_CHECKING = "https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign";
     public static final String PUSH_PLUS = "https://www.pushplus.plus/send";
     public static final String SERVER_PUSH = "https://sc.ftqq.com/";
