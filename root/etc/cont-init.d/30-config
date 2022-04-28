@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv bash
+
+# copy config.json
+if [ ! -e /config/config.json ]
+then
+  cp /app-conf/config.json /config/config.json
+fi
+
+# 创建运行日志文件
+if [ ! -e /config/bilibili-helper.log ]
+then
+  touch /config/bilibili-helper.log
+fi
+
+# 创建crontab
+if [ ! -e /config/bh-crontab ]
+then
+  cp /app-conf/bh-crontab /config/bh-crontab
+fi
+
+# permissions
+chmod a+x /app-conf/bh-run.sh
+chmod a+x /app-conf/random-bh.sh
+chown -R abc:abc /config

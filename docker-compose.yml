@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  bilibili-helper:
+    image: maokwen/bilibili-helper:latest
+    container_name: bilibili-helper
+    environment:
+      - PUID=1026
+      - PGID=100
+      - TZ=Asia/Shanghai
+      - CRON=false
+    volumes:
+      - $PWD/config:/config
+    restart: unless-stopped
+
+    
