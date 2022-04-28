@@ -37,11 +37,8 @@ public class Silver2Coin implements Task {
         //银瓜子兑换硬币汇率
         final int exchangeRate = 700;
         int silverNum = queryStatus.get("silver").getAsInt();
-        int timeLeft = queryStatus.get("silver_2_coin_left").getAsInt();
 
-        if (timeLeft < 1) {
-            log.info("今日兑换次数已用完");
-        } else if (silverNum < exchangeRate) {
+        if (silverNum < exchangeRate) {
             log.info("当前银瓜子余额为:{},不足700,不进行兑换", silverNum);
         } else {
             String requestBody = "csrf_token=" + ConfigLoader.helperConfig.getBiliVerify().getBiliJct()

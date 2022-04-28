@@ -33,13 +33,13 @@ public class ApiList {
     public static final String NEED_COIN = "https://www.bilibili.com/plus/account/exp.php";
     public static final String NEED_COIN_NEW = "https://api.bilibili.com/x/web-interface/coin/today/exp";
     /**
-     * 银瓜子换硬币.
+     * 硬币换银瓜子.
      */
     public static final String SILVER_2_COIN = "https://api.live.bilibili.com/xlive/revenue/v1/wallet/silver2coin";
     /**
      * 查询银瓜子兑换状态.
      */
-    public static final String GET_SILVER_2_COIN_STATUS = "https://api.live.bilibili.com/xlive/revenue/v1/wallet/getStatus";
+    public static final String GET_SILVER_2_COIN_STATUS = "https://api.live.bilibili.com/xlive/revenue/v1/wallet/myWallet?need_bp=1&need_metal=1&platform=pc";
     /**
      * 上报观看进度.
      */
