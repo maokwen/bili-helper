@@ -9,7 +9,6 @@ import top.misec.config.ConfigLoader;
 import top.misec.task.DailyTask;
 import top.misec.task.ServerPush;
 import top.misec.utils.ReadFileUtils;
-import top.misec.utils.VersionInfo;
 
 @Slf4j
 public class BiliMainTest {
@@ -32,7 +31,6 @@ public class BiliMainTest {
         }
 
 
-        VersionInfo.printVersionInfo();
         //每日任务65经验
 
         if (!Boolean.TRUE.equals(ConfigLoader.helperConfig.getTaskConfig().getSkipDailyTask())) {

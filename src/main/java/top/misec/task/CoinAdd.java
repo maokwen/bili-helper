@@ -56,12 +56,7 @@ public class CoinAdd implements Task {
         //投币策略
         int coinAddPriority = ConfigLoader.helperConfig.getTaskConfig().getCoinAddPriority();
 
-        if (setCoin > maxNumberOfCoins) {
-            log.info("自定义投币数为: {}枚,为保护你的资产，自定义投币数重置为: " + maxNumberOfCoins + "枚", setCoin);
-            setCoin = maxNumberOfCoins;
-        }
-
-        log.info("自定义投币数为: {}枚,程序执行前已投: {}枚", setCoin, useCoin);
+        log.info("设定投币数为: {}枚，当前已投: {}枚", setCoin, useCoin);
 
         //调整投币数 设置投币数-已经投过的硬币数
         int needCoins = setCoin - useCoin;
@@ -72,7 +67,7 @@ public class CoinAdd implements Task {
 
 
         if (needCoins <= 0) {
-            log.info("已完成设定的投币任务，今日无需再投币了");
+            log.info("已完成投币任务，今日无需再投币了");
             return;
         } else {
             log.info("投币数调整为: {}枚", needCoins);
@@ -85,8 +80,7 @@ public class CoinAdd implements Task {
         }
 
         if (coinBalance < reserveCoins) {
-            log.info("剩余硬币数为{},低于预留硬币数{},今日不再投币", beforeAddCoinBalance, reserveCoins);
-            log.info("tips: 当硬币余额少于你配置的预留硬币数时，则会暂停当日投币任务");
+            log.info("剩余硬币数为{}，低于预留硬币数{}，今日不再投币", beforeAddCoinBalance, reserveCoins);
             return;
         }
 
@@ -110,7 +104,7 @@ public class CoinAdd implements Task {
                 new SleepTime().sleepDefault();
             }
             if (addCoinOperateCount > 15) {
-                log.info("尝试投币/投币失败次数太多");
+                log.info("尝试投币次数太多");
                 break;
             }
         }

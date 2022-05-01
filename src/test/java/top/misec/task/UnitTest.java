@@ -4,7 +4,6 @@ import java.io.File;
 
 import lombok.extern.slf4j.Slf4j;
 import top.misec.config.ConfigLoader;
-import top.misec.utils.VersionInfo;
 
 /**
  * util test.
@@ -16,7 +15,6 @@ import top.misec.utils.VersionInfo;
 public class UnitTest {
 
     public static void main(String[] args) {
-        VersionInfo.printVersionInfo();
 
         if (args.length > 0) {
             log.info("使用自定义目录的配置文件");

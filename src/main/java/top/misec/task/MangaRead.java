@@ -25,14 +25,14 @@ public class MangaRead implements Task {
         Map<String, String> map = new HashMap<>(4);
         map.put("device", "pc");
         map.put("platform", "web");
-        map.put("comic_id", "27355");
-        map.put("ep_id", "381662");
+        map.put("comic_id", "25493");
+        map.put("ep_id", "252893");
 
         JsonObject result = HttpUtils.doPost(ApiList.MANGA_READ, GsonUtils.toJson(map));
         int code = result.get(STATUS_CODE_STR).getAsInt();
 
         if (code == 0) {
-            log.info("本日漫画自动阅读1章节成功！，阅读漫画为：堀与宫村");
+            log.info("本日漫画自动阅读1章节成功！");
         } else {
             log.warn("阅读失败,错误信息为\n```json\n{}\n```", result);
         }

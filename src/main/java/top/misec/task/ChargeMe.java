@@ -52,12 +52,12 @@ public class ChargeMe implements Task {
         }
 
         if ("0".equals(userId) || "".equals(userId)) {
-            log.info("充电对象uid配置错误，请参考最新的文档");
+            log.info("充电对象uid配置错误");
             return;
         }
 
         if (day < ConfigLoader.helperConfig.getTaskConfig().getChargeDay()) {
-            log.info("今天是本月的第: {}天，还没到充电日子呢", day);
+            log.info("今天是本月的第{}天，还没到充电日子呢", day);
             return;
         }
 
@@ -120,6 +120,6 @@ public class ChargeMe implements Task {
 
     @Override
     public String getName() {
-        return "大会员月底B币券充电";
+        return "B币券充电";
     }
 }

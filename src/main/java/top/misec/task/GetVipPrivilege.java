@@ -71,17 +71,17 @@ public class GetVipPrivilege implements Task {
 
         if (day == 1 || day % 3 == 0) {
             if (vipType == 2) {
-                log.info("开始领取年度大会员权益");
+                log.info("开始领取年度大会员漫画权益");
                 OftenApi.getVipPrivilege(1);
                 OftenApi.getVipPrivilege(2);
             }
         } else {
-            log.info("本日非领取年度大会员权益执行日期");
+            log.info("本日非领取年度大会员漫画权益执行日期");
         }
     }
 
     @Override
     public String getName() {
-        return "漫画权益领取";
+        return "领取漫画权益";
     }
 }

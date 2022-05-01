@@ -52,7 +52,6 @@ public class DailyTask {
         JsonObject jsonObject = HttpUtils.doGet(ApiList.REWARD);
         int responseCode = jsonObject.get(STATUS_CODE_STR).getAsInt();
         if (responseCode == 0) {
-            log.info("请求本日任务完成状态成功");
             return jsonObject.get("data").getAsJsonObject();
         } else {
             log.warn(jsonObject.get("message").getAsString());
@@ -64,13 +63,12 @@ public class DailyTask {
     public void doDailyTask() {
         try {
             dailyTasks.forEach(task -> {
-                log.info("------{}开始------", task.getName());
+                log.info("------{}------", task.getName());
                 try {
                     task.run();
                 } catch (Exception e) {
                     log.error("任务[{}]运行失败", task.getName(), e);
                 }
-                log.info("------{}结束------\n", task.getName());
                 new SleepTime().sleepDefault();
             });
             log.info("本日任务已全部执行完毕");
