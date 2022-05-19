@@ -2,11 +2,8 @@ package top.misec;
 
 import java.io.File;
 
-import com.google.gson.JsonSyntaxException;
-
 import lombok.extern.slf4j.Slf4j;
 import top.misec.config.ConfigLoader;
-import top.misec.config.HelperConfig;
 import top.misec.task.DailyTask;
 import top.misec.task.ServerPush;
 

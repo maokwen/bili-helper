@@ -1,35 +1,23 @@
 package top.misec;
 
-import org.junit.jupiter.api.Test;
+import java.io.File;
 
-import com.google.gson.JsonSyntaxException;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 import top.misec.config.ConfigLoader;
 import top.misec.task.DailyTask;
 import top.misec.task.ServerPush;
-import top.misec.utils.ReadFileUtils;
 
 @Slf4j
 public class BiliMainTest {
 
     @Test
     public void testMainHandler() {
-        String config = System.getProperty("config");
-        //serverless 本地测试
-        config = ReadFileUtils.readFile("/tmp/config.json");
-        if (null == config) {
-            log.error("云函数配置的config参数为空。");
-            return;
-        }
 
-        try {
-            ConfigLoader.serverlessConfigInit(config);
-        } catch (JsonSyntaxException e) {
-            log.error("配置json格式有误，请检查是否是合法的json串", e);
-            return;
-        }
-
+        log.info("使用同目录下的config.json文件");
+        String currentPath = System.getProperty("user.dir") + File.separator + "config.json";
+        ConfigLoader.configInit(currentPath);
 
         //每日任务65经验
 
