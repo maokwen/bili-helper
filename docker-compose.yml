@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  bilibili-helper:
-    image: maokwen/bilibili-helper:latest
-    container_name: bilibili-helper
+  bili-helper:
+    image: ghcr.io/maokwen/bili-helper:latest
+    container_name: bili-helper
     environment:
       - PUID=1026
       - PGID=100

@@ -43,22 +43,19 @@
 [点击快速查看自定义功能配置](#自定义功能配置)
 
 # 目录
-* [目录](#目录)
-  + [开始使用](#开始使用)
+- [目录](#目录)
+  - [开始使用](#开始使用)
     - [获取执行所需的 cookies](#获取执行所需的-cookies)
     - [一、快速使用](#一快速使用)
     - [二、使用 Docker](#二使用-docker)
-    - [三、使用腾讯云函数](#三使用腾讯云函数)
-    - [四、使用 GitLab CI/CD](#四使用-gitlab-cicd)
-    - [五、使用青龙管理面板](#五使用青龙管理面板)
-  + [自定义功能配置](#自定义功能配置)
+  - [自定义功能配置](#自定义功能配置)
     - [配置文件参数](#配置文件参数)
-  + [免责声明](#免责声明)
-  + [API 参考列表](#api-参考列表)
-  + [致谢](#致谢)
-  + [讨论群](#讨论群)
-  + [License](#license)
-  + [Stargazers over time](#stargazers-over-time)
+  - [免责声明](#免责声明)
+  - [API 参考列表](#api-参考列表)
+  - [致谢](#致谢)
+  - [讨论群](#讨论群)
+  - [License](#license)
+  - [Stargazers over time](#stargazers-over-time)
 
 ## 开始使用
 
@@ -87,19 +84,6 @@
 * **基于本项目的 docker 封装项目：[SuperNG6/docker-bilibili-helper](https://github.com/SuperNG6/docker-bilibili-helper)**
 
 * **基于本项目的 docker 镜像：[superng6/bilibili-helper](https://hub.docker.com/r/superng6/bilibili-helper)**
-
-### 三、使用腾讯云函数
-
-* **请参考[腾讯云函数部署](docs/scf.md)**
-
-### 四、使用 GitLab CI/CD
-
-* **请参考[GitLab CI/CD 部署](docs/gitlab.md)**
-
-### 五、使用青龙管理面板
-
-* **青龙一键拉取命令 `ql raw https://raw.githubusercontent.com/Oreomeow/bili/main/bilibili_helper.sh`**
-* **[青龙管理面板部署](docs/qinglong.md)**
 
 ## 自定义功能配置
 
