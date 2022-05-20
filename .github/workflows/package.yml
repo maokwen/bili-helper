@@ -1,4 +1,4 @@
-name: Build Release
+name: Release
 
 on:
   push:
@@ -80,8 +80,8 @@ jobs:
           tags: |
             ghcr.io/maokwen/bili-helper:arm64-${{ steps.tag_latest.outputs.value }}
             ghcr.io/maokwen/bili-helper:arm64-latest
-          # cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache
-          # cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache,mode=max
+          cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache
+          cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache,mode=max
 
       - name: Build dockerfile tag x86_64
         uses: docker/build-push-action@v2
@@ -93,8 +93,8 @@ jobs:
           tags: |
             ghcr.io/maokwen/bili-helper:${{ steps.tag_latest.outputs.value }}
             ghcr.io/maokwen/bili-helper:latest
-          # cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache
-          # cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache,mode=max
+          cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache
+          cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache,mode=max
 
       - name: Create Release
         id: create_release
