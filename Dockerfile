@@ -8,7 +8,7 @@ RUN set -ex \
 	&& bash install-s6-overlay.sh
 
 # bilibili-helper
-FROM openjdk:17-jdk-slim
+FROM openjdk:8-jre-slim
 ENV TZ=Asia/Shanghai TASK=1d CRON=false \
     PUID=1026 PGID=100
 # copy files
