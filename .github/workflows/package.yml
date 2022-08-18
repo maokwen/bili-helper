@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "src/main/resources/release.json"
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -14,20 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # 从release.json 读取相关信息
-      - name: Read tag_main
-        id: tag_main
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./src/main/resources/release.json
-          property: tag_main
-
-      - name: Read tag_latest
-        id: tag_latest
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./src/main/resources/release.json
-          property: tag_latest
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -41,12 +29,12 @@ jobs:
 
       - name: ZIP files
         run: |
-             -f ./build/libs/bili-helper-${{steps.tag_main.outputs.value}}-all.jar bili-helper-v${{steps.tag_latest.outputs.value}}.jar
-          zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip bili-helper-v${{steps.tag_latest.outputs.value}}.jar
+             -f ./build/libs/bili-helper-${{ env.RELEASE_VERSION }}-all.jar bili-helper-v${{ env.RELEASE_VERSION }}.jar
+          zip bili-helper\ v${{ env.RELEASE_VERSION }}.zip bili-helper-v${{ env.RELEASE_VERSION }}.jar
           cp ./src/main/resources/config.json ./
-          zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip config.json
-          zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip -r docs/
-          zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip LICENSE
+          zip bili-helper\ v${{ env.RELEASE_VERSION }}.zip config.json
+          zip bili-helper\ v${{ env.RELEASE_VERSION }}.zip -r docs/
+          zip bili-helper\ v${{ env.RELEASE_VERSION }}.zip LICENSE
 
       # Docker Image 构建环境
       - name: Set up QEMU
@@ -65,7 +53,7 @@ jobs:
       - name: Copy docker files
         run: |
           pwd
-          cp bili-helper-v${{steps.tag_latest.outputs.value}}.jar app.jar
+          cp bili-helper-v${{ env.RELEASE_VERSION }}.jar app.jar
           cp ./src/main/resources/config.json config.json
           ls -l
 
@@ -83,8 +71,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v${{steps.tag_latest.outputs.value}}
-          release_name: bili-helper-v${{steps.tag_latest.outputs.value}}
+          tag_name: v${{ env.RELEASE_VERSION }}
+          release_name: bili-helper-v${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
 
@@ -95,6 +83,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bili-helper v${{steps.tag_latest.outputs.value}}.zip
-          asset_name: bili-helper-v${{steps.tag_latest.outputs.value}}.zip
+          asset_path: ./bili-helper v${{ env.RELEASE_VERSION }}.zip
+          asset_name: bili-helper-v${{ env.RELEASE_VERSION }}.zip
           asset_content_type: application/zip
