@@ -1,37 +1,46 @@
-# download s6-overlay
-FROM lsiobase/alpine:3.13 as builder
+# builder: jre
+FROM alpine:latest as jre-builder
 
 WORKDIR /
-COPY install-s6-overlay.sh /
-RUN set -ex \
-	&& chmod +x install-s6-overlay.sh \
-	&& bash install-s6-overlay.sh
 
-# bilibili-helper
-FROM openjdk:8-jre-slim
-ENV TZ=Asia/Shanghai TASK=1d CRON=false \
-    PUID=1026 PGID=100
-# copy files
-COPY --from=builder s6-overlay/ /
-COPY bili-helper.jar  /app/bili-helper.jar
-COPY config.json  /app-conf/config.json
+RUN apk add --no-cache openjdk17 binutils
 
-# create abc user
-RUN apt -y update && apt -y install tzdata cron \
-&&  chmod +x /app/bili-helper.jar \
-&&  useradd -u 1000 -U -d /config -s /bin/false abc \
-&&  usermod -G users abc  \
-&&  echo "**** cleanup ****" \
-&&  apt-get clean \
-&&  rm -rf \
-	/tmp/* \
-	/var/lib/apt/lists/* \
-	/var/tmp/*
+# gradle build
+# cp ./build/libs/bili-helper-*-all.jar ./app.jar
+# mkdir app
+# cd ./app
+# unzip ../app.jar
+# cd ..
+# jdeps --print-module-deps --ignore-missing-deps --recursive --multi-release 17 --class-path="./app/BOOT-INF/lib/*" --module-path="./app/BOOT-INF/lib/*" ./app.jar
+# rm -rf ./app
 
-COPY root/ /
+RUN /usr/bin/jlink \
+         --verbose \
+         --add-modules java.base,java.compiler,java.desktop,java.management,java.naming,java.security.jgss,java.sql,jdk.unsupported \
+         --strip-debug \
+         --no-man-pages \
+         --no-header-files \
+         --compress=2 \
+         --output /customjre
 
-WORKDIR /app
-# volume
+# bili-helper
+FROM alpine:latest
+
+WORKDIR /
+
+ENV JAVA_HOME=/jre
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+ENV PUID=1026 PGID=100
+
+RUN apk add --update busybox-suid
+
+COPY --from=jre-builder /customjre $JAVA_HOME
+COPY app.jar /app.jar
+COPY docker-entry/ /
+
+RUN chmod +x /run.sh /entry.sh /app.jar
+RUN /usr/bin/crontab /crontab.txt
+
 VOLUME [ "/config" ]
 
-ENTRYPOINT [ "/init" ]
+ENTRYPOINT [ "/entry.sh" ]
