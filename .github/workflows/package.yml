@@ -33,15 +33,15 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '8'
-          cache: 'maven'
+          java-version: '17'
+          cache: 'gradle'
 
-      - name: Package with Maven
-        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
+      - name: Package with Gradle
+        run: gradle shadowJar -x test
 
       - name: ZIP files
         run: |
-          mv -f ./target/bili-helper-${{steps.tag_main.outputs.value}}.jar bili-helper-v${{steps.tag_latest.outputs.value}}.jar
+             -f ./build/libs/bili-helper-${{steps.tag_main.outputs.value}}-all.jar bili-helper-v${{steps.tag_latest.outputs.value}}.jar
           zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip bili-helper-v${{steps.tag_latest.outputs.value}}.jar
           cp ./src/main/resources/config.json ./
           zip bili-helper\ v${{steps.tag_latest.outputs.value}}.zip config.json
@@ -65,36 +65,17 @@ jobs:
       - name: Copy docker files
         run: |
           pwd
-          cp bili-helper-v${{steps.tag_latest.outputs.value}}.jar bili-helper.jar
+          cp bili-helper-v${{steps.tag_latest.outputs.value}}.jar app.jar
           cp ./src/main/resources/config.json config.json
           ls -l
 
-      # 构建docker images 分为tag版和latest版
-      - name: Build dockerfile tag arm64
-        uses: docker/build-push-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Dockerfile-arm64
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            ghcr.io/maokwen/bili-helper:arm64-${{ steps.tag_latest.outputs.value }}
-            ghcr.io/maokwen/bili-helper:arm64-latest
-          cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache
-          cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:arm64-buildcache,mode=max
-
-      - name: Build dockerfile tag x86_64
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/maokwen/bili-helper:${{ steps.tag_latest.outputs.value }}
-            ghcr.io/maokwen/bili-helper:latest
-          cache-from: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache
-          cache-to: type=registry,ref=ghcr.io/maokwen/bili-helper:buildcache,mode=max
+          tags: ghcr.io/maokwen/bili-helper:latest
 
       - name: Create Release
         id: create_release
