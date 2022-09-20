@@ -65,7 +65,7 @@
 2. 按 F12 打开 「开发者工具」 打开 网络/NetWork -> 找到并点击 nav 请求。
 3. 下拉请求详情，复制完整的 cookie 和 UA 备用。cookie 和 ua 只需要选中，右键复制值即可。
 
-![准备 cookie](docs/images/ck.webp)
+![准备 cookie](images/ck.webp)
 
 [1]: https://www.bilibili.com/
 
@@ -202,7 +202,7 @@
 
 * **tips: `PROXY_HTTP_HOST` 和 `PROXY_SOCKET_HOST` 仅需填写一个。**
 * **tips: 钉钉推送密钥可不填，不填仅用关键词验证。**
-* **获取 `media_id` 的方式请参考 `docs/images/media_id.png`**
+* **获取 `media_id` 的方式请参考 `images/media_id.png`**
 
 ## 免责声明
 
@@ -223,13 +223,13 @@
 
 感谢 JetBrains 对本项目的支持。
 
-[![JetBrains](docs/images/jetbrains.svg)](https://www.jetbrains.com/?from=BILIBILI-HELPER-PRE)
+[![JetBrains](images/jetbrains.svg)](https://www.jetbrains.com/?from=BILIBILI-HELPER-PRE)
 
 ## 讨论群
 
 qq 群二维码
 
-![qq群二维码](docs/images/qqgroup.png)
+![qq群二维码](images/qqgroup.png)
 
 [也可点击此处一键加群](https://qm.qq.com/cgi-bin/qm/qr?k=m_M1Fydi3MvrVAEM0Sp6hDfZF4N2SpXU&jump_from=webapi)
 
