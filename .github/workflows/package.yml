@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - id: vars
-        run: echo ::set-output name=tag::$(date '+%Y-%m-%d')
-
       - uses: actions/checkout@v2
+
+      - id: vars
+        run: echo ::set-output name=tag::$(date '+%Y-%m-%d')-$(git rev-parse --short HEAD)
 
       - name: Set up JDK
         uses: actions/setup-java@v3
