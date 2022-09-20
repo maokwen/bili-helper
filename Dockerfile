@@ -36,7 +36,7 @@ RUN apk add --update busybox-suid
 
 COPY --from=jre-builder /customjre $JAVA_HOME
 COPY app.jar /app.jar
-COPY docker-entry/ /
+COPY docker/ /
 
 RUN chmod +x /run.sh /entry.sh /app.jar
 RUN /usr/bin/crontab /crontab.txt
