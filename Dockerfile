@@ -16,7 +16,7 @@ RUN apk add --no-cache openjdk17 binutils
 
 RUN /usr/bin/jlink \
          --verbose \
-         --add-modules java.base,java.compiler,java.desktop,java.management,java.naming,java.security.jgss,java.sql,jdk.unsupported \
+         --add-modules java.base,java.compiler,java.desktop,java.management,java.naming,java.security.jgss,java.sql,jdk.unsupported,jdk.crypto.ec \
          --strip-debug \
          --no-man-pages \
          --no-header-files \
