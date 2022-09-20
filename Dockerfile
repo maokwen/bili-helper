@@ -3,7 +3,7 @@ FROM alpine:latest as jre-builder
 
 WORKDIR /
 
-RUN apk add --no-cache openjdk17 binutils
+RUN apk add --no-cache openjdk17 binutils ca-certificates
 
 # gradle build
 # cp ./build/libs/bili-helper-*-all.jar ./app.jar
@@ -36,7 +36,7 @@ RUN apk add --update busybox-suid
 
 COPY --from=jre-builder /customjre $JAVA_HOME
 COPY app.jar /app.jar
-COPY docker-entry/ /
+COPY docker/ /
 
 RUN chmod +x /run.sh /entry.sh /app.jar
 RUN /usr/bin/crontab /crontab.txt
