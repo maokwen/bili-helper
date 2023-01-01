@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
     implementation 'io.github.itning:guava-retrying3:3.0.2'
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'org.slf4j:jcl-over-slf4j:2.0.5'
