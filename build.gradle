@@ -22,7 +22,7 @@ dependencies {
     implementation 'io.github.itning:guava-retrying3:3.0.2'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.slf4j:jcl-over-slf4j:2.0.7'
-    implementation 'ch.qos.logback:logback-classic:1.4.6'
+    implementation 'ch.qos.logback:logback-classic:1.4.7'
     implementation 'cn.hutool:hutool-core:5.8.16'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
