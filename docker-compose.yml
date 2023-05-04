@@ -10,7 +10,7 @@ services:
       - TZ=Asia/Shanghai
       - CRON=false
     volumes:
-      - $PWD/config:/config
+      - $PWD/config.json:/config/config.json
     restart: unless-stopped
 
     
