@@ -56,9 +56,17 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: ghcr.io/maokwen/bili-helper:latest
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/arm64
+          push: true
+          tags: ghcr.io/maokwen/bili-helper:latest-arm64
 
       - name: Create Release
         id: create_release
