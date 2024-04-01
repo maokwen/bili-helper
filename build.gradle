@@ -26,10 +26,10 @@ dependencies {
     implementation 'cn.hutool:hutool-core:5.8.26'
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
-    testCompileOnly 'org.projectlombok:lombok:1.18.30'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    testCompileOnly 'org.projectlombok:lombok:1.18.32'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
 }
 
 group = 'top.misec'
