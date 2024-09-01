@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.slf4j:jcl-over-slf4j:2.0.16'
     implementation 'ch.qos.logback:logback-classic:1.4.14'
     implementation 'cn.hutool:hutool-core:5.8.32'
-    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
