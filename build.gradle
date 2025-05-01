@@ -25,7 +25,7 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.5.18'
     implementation 'cn.hutool:hutool-core:5.8.37'
     implementation 'org.apache.commons:commons-lang3:3.14.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
     testCompileOnly 'org.projectlombok:lombok:1.18.38'
