@@ -23,7 +23,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.12.1'
     implementation 'org.slf4j:jcl-over-slf4j:2.0.17'
     implementation 'ch.qos.logback:logback-classic:1.5.18'
-    implementation 'cn.hutool:hutool-core:5.8.35'
+    implementation 'cn.hutool:hutool-core:5.8.37'
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.1'
     compileOnly 'org.projectlombok:lombok:1.18.38'
